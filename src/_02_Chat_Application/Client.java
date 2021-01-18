@@ -1,14 +1,14 @@
-package _00_Click_Chat.networking;
+package _02_Chat_Application;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 import javax.swing.JOptionPane;
 
 public class Client {
+
 	private String ip;
 	private int port;
 
@@ -16,12 +16,12 @@ public class Client {
 
 	ObjectOutputStream os;
 	ObjectInputStream is;
-
+	
 	public Client(String ip, int port) {
 		this.ip = ip;
 		this.port = port;
 	}
-
+	
 	public void start(){
 		try {
 
@@ -49,10 +49,12 @@ public class Client {
 		}
 	}
 	
-	public void sendClick() {
+	public void sendMessage() {
 		try {
 			if (os != null) {
-				os.writeObject("CLICK SENT FROM CLIENT");
+				String message = ChatApp.textField.getText();
+				os.writeObject(message + " from the client");
+				ChatApp.textField.setText("");
 				os.flush();
 				
 			}
@@ -60,4 +62,6 @@ public class Client {
 			e.printStackTrace();
 		}
 	}
+
+
 }

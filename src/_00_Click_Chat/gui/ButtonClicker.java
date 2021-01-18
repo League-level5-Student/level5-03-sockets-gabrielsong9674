@@ -42,6 +42,7 @@ public class ButtonClicker extends JFrame {
 			client = new Client(ipStr, port);
 			button.addActionListener((e)->{
 				client.sendClick();
+
 			});
 			add(button);
 			setVisible(true);
